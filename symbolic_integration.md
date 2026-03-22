@@ -42,13 +42,9 @@ void loop() {
 }
 
 // Function to calculate the antiderivative of the polynomial: F(x) = (a/5)*x^5 + (b/4)*x^4 + (c/3)*x^3 + (d/2)*x^2 + e*x
+// Optimized using a variation of Horner's Method for antiderivatives
 double polynomialAntiderivative(double x) {
-  double term1 = (a / 5.0) * pow(x, 5);
-  double term2 = (b / 4.0) * pow(x, 4);
-  double term3 = (c / 3.0) * pow(x, 3);
-  double term4 = (d / 2.0) * pow(x, 2);
-  double term5 = e * x;
-  return term1 + term2 + term3 + term4 + term5;
+  return ((((a / 5.0 * x + b / 4.0) * x + c / 3.0) * x + d / 2.0) * x + e) * x;
 }
 
 // Function to perform symbolic integration using the exact antiderivative of the polynomial
