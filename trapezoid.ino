@@ -34,18 +34,19 @@ void loop() {
 }
 
 // Function to define the polynomial f(x) = ax^4 + bx^3 + cx^2 + dx + e
+// Optimized using Horner's Method
 double polynomial(double x) {
-  return a * pow(x, 4) + b * pow(x, 3) + c * pow(x, 2) + d * x + e;
+  return (((a * x + b) * x + c) * x + d) * x + e;
 }
 
 // Function to perform numerical integration using the Trapezoidal Rule
 double trapezoidalIntegration(double x_start, double x_end, int num_intervals) {
+  if (num_intervals <= 0) return 0.0;
   double h = (x_end - x_start) / num_intervals; // Step size
   double integral = 0.0;
 
   // Calculate the sum of first and last terms
-  integral += polynomial(x_start) / 2.0;
-  integral += polynomial(x_end) / 2.0;
+  integral += (polynomial(x_start) + polynomial(x_end)) / 2.0;
 
   // Sum up the middle terms
   for (int i = 1; i < num_intervals; i++) {
